@@ -118,14 +118,17 @@ def Max2(a,b):
 def Max(S):
     if isOneElmt(S):
         if is_atom(first_List(S)):
-            return first_List(S)
+            if isinstance(first_List(S), list):
+                return first_List(first_List(S))
+            else:
+                return first_List(S)
         else:
             return Max(first_List(S))
     else:
         if is_atom(first_List(S)):
             return Max2(first_List(S), Max(tail_List(S)))
         else:
-            return Max2(Max([[first_List(S)]]), Max(tail_List(S)))
+            return Max2(Max(first_List(S)), Max(tail_List(S)))
         
 
 # L1=[]
@@ -176,5 +179,6 @@ def Max(S):
 # S = [[1, 'b', 3], ['c', 'b', 3]]
 # print(Rember(A, S))
 
-# S = [[38, 50, 4, 6, 3]] 
+# S = [[38]] 
+# S = [[38]] 
 # print(Max(S))
